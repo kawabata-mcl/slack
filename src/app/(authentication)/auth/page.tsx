@@ -1,5 +1,6 @@
 'use client';
 
+import { registerWithEmail } from '@/actions/register-with-email';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -53,9 +54,16 @@ const AuthPage = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
-  };
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsAuthenticating(true);
+    const response = await registerWithEmail({ email: values.email });
+    const { data, error } = JSON.parse(response);
+    if (error) {
+      console.warn('Sign in error:', error);
+      return;
+    }
+    setIsAuthenticating(false);
+  }
 
   async function socialAuth(provider: Provider) {
     setIsAuthenticating(true);
@@ -98,7 +106,7 @@ const AuthPage = () => {
             <FcGoogle />
             <Typography
               className='test-xl'
-              text='Sign in with GitHub'
+              text='Sign in with Google'
               variant='p'
             />
           </Button>

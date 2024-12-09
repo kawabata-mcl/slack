@@ -2,4 +2,4 @@
 
 ## 続き
 
-https://www.youtube.com/watch?v=3D8Q_BMurfs&t=5373s
+https://www.youtube.com/watch?v=3D8Q_BMurfs&t=6838s
